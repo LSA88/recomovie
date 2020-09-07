@@ -44,7 +44,7 @@ public class R_analysisDAO {
 		
 
 public Map recommend_item_by_user(Map<String, Object> request_map) {
-	   String user_id = (String) request_map.get("user_id");
+	   String userId = (String) request_map.get("userId");
 	 	   RConnection connection = null;
 	   		String  results ="";
 	 		REXP r= null;
@@ -52,8 +52,8 @@ public Map recommend_item_by_user(Map<String, Object> request_map) {
 	   		try {
 	   			connection  =		new RConnection(R_SERVER_IP, R_SERVER_PORT);
 	  			connection.eval ( source_head + "/home/analysis/R/recommender_script/"+ "recommend_item_by_user.R" +source_tail);
-	  			connection.assign("user_id",user_id);
-	   			connection.assign(".tmp.", "recommend_item_by_user(user_id)");
+	  			connection.assign("userId",userId);
+	   			connection.assign(".tmp.", "recommend_item_by_user(userId)");
 	   			r = connection.parseAndEval("try(eval(parse(text=.tmp.)),silent=TRUE)");
 	   			if (r.inherits("try-error")) { 
 					logger.error("Error: "+r.asString());
@@ -62,12 +62,12 @@ public Map recommend_item_by_user(Map<String, Object> request_map) {
 				else { 
 					list= r.asList();
 				}
-				ArrayList<Map> arr_map = new ArrayList<>();
+				ArrayList<String> arr_map = new ArrayList<>();
 				for(int i =0; i<list.size();i++){
-					REXPGenericVector array = (REXPGenericVector) list.get(i);
-					Map map = (Map)array.asNativeJavaObject();
-					arr_map.add(map);
+					REXPString item = (REXPString) list.get(i);
+					arr_map.add(item.asString());
 				}
+				
 	   			request_map.put("result", arr_map);
 	   			request_map.put("state", true);
 	   		} catch (Exception e) {
