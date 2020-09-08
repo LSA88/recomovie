@@ -112,5 +112,11 @@ public class BaseDAO extends AbstractDao {
 		return find_list;
 	}
 
+
+	@Override
+	public long count(String DB, String col, Document query) throws Exception {
+
+		return (long) getCollection(DB, col).countDocuments(query);
+	}
 	
 }

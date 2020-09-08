@@ -25,7 +25,7 @@ public interface DAOImplements {
     public Document update(String DB,String col,Document filter,Document update)throws Exception;
     
     public Document delete(String DB,String col,Document document)throws Exception;
+    public long count(String DB, String col, Document query)throws Exception;
 
-	
 	
 }

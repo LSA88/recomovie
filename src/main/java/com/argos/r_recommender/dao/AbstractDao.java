@@ -47,6 +47,10 @@ public abstract class AbstractDao implements DAOImplements {
 		return null;
 	}
 
+	@Override
+	public long count(String DB, String col, Document query) throws Exception {
+		return 0;
+	}
 	
 	
 }

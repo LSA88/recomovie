@@ -31,20 +31,6 @@ public class RecommendController {
 	private Recommend_Service recommend_service;
 	Logger logger = LoggerFactory.getLogger(RecommendController.class);
 
-//	@RequestMapping(value = "/sales_by_date", method = RequestMethod.POST)
-//	@ResponseBody
-//	public Map sales_by_date(@RequestBody Map<String,Object> request_map ) {
-//		Map response_map = r_analysisDAO.sales_by_date(request_map);   
-//		return response_map;
-//	}
-//
-//
-//	@RequestMapping(value = "/sales_by_country", method = RequestMethod.POST)
-//	@ResponseBody
-//	public Map sales_by_country(@RequestBody Map<String,Object> request_map ) {
-//		Map response_map = r_analysisDAO.sales_by_country(request_map);   
-//		return response_map;
-//	}
 	@RequestMapping(value = "/recommend_item_by_user", method = RequestMethod.POST)
 	@ResponseBody
 	public Map recommend_item_by_user(@RequestBody Map<String,Object> request_map ) {
@@ -58,7 +44,12 @@ public class RecommendController {
 		return response_map;
 	}
 
-	
+	@RequestMapping(value = "/user_movie_rating", method = RequestMethod.POST)
+	@ResponseBody
+	public Map user_movie_rating(@RequestBody Map<String,Object> request_map ) {
+		Map response_map = recommend_service.user_movie_rating((String)request_map.get("이름"));   
+		return response_map;
+	}
 	
 	@RequestMapping(value = "/recommend_main", method = RequestMethod.GET)
 	public ModelAndView r_analysis_main(HttpServletRequest request) throws Exception {

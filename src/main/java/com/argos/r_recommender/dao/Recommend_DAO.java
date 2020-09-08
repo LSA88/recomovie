@@ -57,5 +57,9 @@ public class Recommend_DAO extends BaseDAO {
 			throws Exception {
 		return super.findAll(DB, col, query, sort_query, start_page, limit);
 	}
+	@Override
+	public long count(String DB, String col, Document query) throws Exception {
+		return super.count(DB, col, query);
+	}
 	
 }
