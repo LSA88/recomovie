@@ -51,7 +51,7 @@ public Map recommend_item_by_user(Map<String, Object> request_map) {
 	 		RList list=  null;
 	   		try {
 	   			connection  =		new RConnection(R_SERVER_IP, R_SERVER_PORT);
-	  			connection.eval ( source_head + "/home/rstudio/R/recommender_script/"+ "recommend_item_by_user.R" +source_tail);
+	  			connection.eval ( source_head + "C:/Users/mouse/Documents/recommender_script/"+ "recommend_item_by_user.R" +source_tail);
 	  			connection.assign("userId",userId);
 	   			connection.assign(".tmp.", "recommend_item_by_user(userId)");
 	   			r = connection.parseAndEval("try(eval(parse(text=.tmp.)),silent=TRUE)");
