@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,12 @@ public class RecommendController {
 		Map response_map = recommend_service.user_movie_rating((String)request_map.get("이름"));
 		return response_map;
 	}
-
+	@RequestMapping(value = "/select_movie_list", method = RequestMethod.GET)
+	@ResponseBody
+	public String select_movie_list( ) {
+		Document response_map = recommend_service.select_movie_list();
+		return response_map.toJson();
+	}
 	@RequestMapping(value = "/recommend_main", method = RequestMethod.GET)
 	public ModelAndView r_analysis_main(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("recommend_page/recommend_main");

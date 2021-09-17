@@ -1,112 +1,24 @@
 	//영화 평점저장을 위한 배열
 	var movie_list = [];
 
-	
-	//맨처음 영화정보 로딩을 위한 함수. 현재 샘플 영화데이터는  스크립트 내에 박혀있지만,
-	//향후  프로젝트 진행에선  샘플코드등을 바탕으로 데이터베이스에 업로드 한뒤 ajax 나 jsp 를 이용하여 호출하는등으로도 사용해보자.
+
+	//데이터베이스에 업로드 한뒤 ajax 나 jsp 를 이용하여 호출하는등으로도 사용해보자.
 	function load_movie_rating() {
 
-		movie_list = [ {
-			이름 : null,
-			영화이름 : "기생충",
-			평점 : null,
-			이미지 : "movie_01.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "조커",
-			평점 : null,
-			이미지 : "movie_02.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "트루먼쇼",
-			평점 : null,
-			이미지 : "movie_03.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "브이포벤데타",
-			평점 : null,
-			이미지 : "movie_04.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "엄복동",
-			평점 : null,
-			이미지 : "movie_05.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "리얼",
-			평점 : null,
-			이미지 : "movie_06.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "클라멘타인",
-			평점 : null,
-			이미지 : "movie_07.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "디워",
-			평점 : null,
-			이미지 : "movie_08.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "인생은아름다워",
-			평점 : null,
-			이미지 : "movie_09.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "이프온리",
-			평점 : null,
-			이미지 : "movie_10.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "내머리속의지우개",
-			평점 : null,
-			이미지 : "movie_11.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "이터널선샤인",
-			평점 : null,
-			이미지 : "movie_12.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "이웃집토토로",
-			평점 : null,
-			이미지 : "movie_13.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "하울의움직이는성",
-			평점 : null,
-			이미지 : "movie_14.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "원령공주",
-			평점 : null,
-			이미지 : "movie_15.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "센과치히로의행방불명",
-			평점 : null,
-			이미지 : "movie_16.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "윈터솔져",
-			평점 : null,
-			이미지 : "movie_17.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "어벤저스-엔드게임",
-			평점 : null,
-			이미지 : "movie_18.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "가이언즈오브갤럭시",
-			평점 : null,
-			이미지 : "movie_19.jpg"
-		}, {
-			이름 : null,
-			영화이름 : "다크나이트",
-			평점 : null,
-			이미지 : "movie_20.jpg"
-		} ]
+        var temp_list = select_movie_list()
+
+        for(var i = 0; i<temp_list.result.length;i++){
+            var movie_obj={
+                    			이름 : null,
+                    			영화이름 : temp_list.result[i].title,
+                    			평점 : null,
+                    			이미지 : "movie_"+temp_list.result[i].movieId+".jpg"
+                    		}
+            movie_list.push(movie_obj);
+
+
+        }
+
 		$('.movie_row').html("");
 		// 해당 반복문은 템플릿스크립트를 이용하여  영화정보 를  편집하여 뿌려주기위한 반복문이다.
 		for (var i = 0; i < movie_list.length; i++) {
@@ -183,6 +95,32 @@
 				});
 
 	}
+	    //전체 무비 목록을 가져오는 함수
+    	function select_movie_list() {
+
+            var movie_list = [];
+    		var request_data = "";
+        //컨트롤단에서 영화목록을 가져오는  ajax 함수
+    		$.ajax({
+    					type : "GET",
+    					url : "/select_movie_list",
+    					dataType : 'json',
+    					async : false,
+    					global : false,
+    					data : request_data,
+    					success : function(response) {
+    						console.log("결과=")
+    						console.log(response)
+
+                            movie_list =response;
+
+    					},
+    					error : function(request, status, error) {
+    						return null;
+    					}
+    				});
+            return movie_list;
+    	}
 	//평점데이터 등록함수   평점을 등록하지않은 사용자라면  평점이 insert처리 되고 ,  등록한 회원이라면 update 처리된다.
 	function insert_movie_rating() {
 

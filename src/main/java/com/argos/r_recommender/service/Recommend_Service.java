@@ -27,12 +27,12 @@ public class Recommend_Service {
 
 		Document response_doc = new org.bson.Document();
 
-		int is_user = selectRowCount("recommend_db", "col_movie_rating", new Document().append("이름", user_id));
+		int is_user = selectRowCount("recommend", "col_movie_rating", new Document().append("이름", user_id));
 
 		if (is_user > 0)// 평점 조회결과가 없다면
 		{
 			try {
-				List<Document> rating_list = recommend_DAO.findAll("recommend_db", "col_movie_rating",
+				List<Document> rating_list = recommend_DAO.findAll("recommend", "col_movie_rating",
 						new Document().append("이름", user_id), new Document(), 0);
 
 				response_doc.append("result", rating_list);
@@ -51,6 +51,28 @@ public class Recommend_Service {
 		return response_doc;
 
 	}
+	public Document select_movie_list() {
+
+		Document response_doc = new org.bson.Document();
+
+
+			try {
+				List<Document> movie_list = recommend_DAO.findAll("recommend", "movie",
+						new Document(), new Document(), 0);
+
+				response_doc.append("result", movie_list);
+				System.out.println(response_doc.toJson());
+				response_doc.append("state", 200);
+			} catch (Exception e) {
+				e.printStackTrace();
+				response_doc.append("state", 404);
+			}
+
+
+
+		return response_doc;
+
+	}
 
 	public Map insert_movie_rating(Map<String, Object> request_map) {
 		Document response_doc = new org.bson.Document();
@@ -58,7 +80,7 @@ public class Recommend_Service {
 		List<Map<String, Object>> movie_list = (List<Map<String, Object>>) request_map.get("movie_list");
 
 		String name = (String) movie_list.get(0).get("이름");
-		int is_user = selectRowCount("recommend_db", "col_movie_rating", new Document().append("이름", name));
+		int is_user = selectRowCount("recommend", "col_movie_rating", new Document().append("이름", name));
 
 		if (is_user > 0)// 평점 업데이트 처리
 		{
@@ -67,7 +89,7 @@ public class Recommend_Service {
 				try {
 					String movie_name = (String) movie_list.get(i).get("영화이름");
 					String movie_rating = (String) movie_list.get(i).get("평점");
-					recommend_DAO.update("recommend_db", "col_movie_rating",
+					recommend_DAO.update("recommend", "col_movie_rating",
 							new Document().append("이름", name).append("영화이름", movie_name),
 
 							new Document().append("$set", new Document().append("평점", movie_rating)));
@@ -83,7 +105,7 @@ public class Recommend_Service {
 			for (int i = 0; i < movie_list.size(); i++) {
 
 				try {
-					recommend_DAO.insert_one("recommend_db", "col_movie_rating", new Document(movie_list.get(i)));
+					recommend_DAO.insert_one("recommend", "col_movie_rating", new Document(movie_list.get(i)));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
