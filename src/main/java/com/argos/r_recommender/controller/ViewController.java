@@ -21,5 +21,14 @@ public class ViewController {
 		return "/index";
 
 	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(HttpServletResponse response, HttpServletRequest request)
+			throws Exception {
+		System.out.println("/member/login_resist_form");
+		return "/member/login_resist_form";
+
+	}
+
 	
 }
