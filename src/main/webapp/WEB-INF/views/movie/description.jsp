@@ -1,8 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+      <%
+          request.setCharacterEncoding("UTF-8");
+          String movie_info = request.getParameter("movie_info");
+
+          pageContext.setAttribute("movie_info",movie_info);
+      %>
+
+
+
+
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
@@ -40,13 +52,24 @@
     integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <link rel="stylesheet" href="css/sub.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sub.css" />
 
   <script defer src="js/youtube.js"></script>
   <script defer src="js/main.js"></script>
 
 
+    <style>
 
+    header > .cut_photo {
+        height: 500px;
+        background-image: url(/resources/images/cutphoto/cutphoto_${movie_info.movieid}.jpg);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        opacity: .4;
+    }
+
+
+    </style>
 </head>
 
 <body>
@@ -56,7 +79,7 @@
     <div class="cut_photo"></div>
     <div class="inner_head">
       <a href="/" class="logo">
-        <img src="./image/reco_nb_logo.png" alt="Reco movie" width="250px" height="50px" />
+        <img src="${pageContext.request.contextPath}/resources/images/reco_nb_logo.png" alt="Reco movie" width="250px" height="50px" />
       </a>
 
       <div class="menu">
@@ -78,20 +101,24 @@
   <section class="dec_menu">
     <div class="inner">
       <div class="poster">
-        <img src="/image/movie_01.jpg" alt="그린북" width="300" height="400" />
+        <img src="${pageContext.request.contextPath}/resources/images/movie/movie_${movie_info.movieid}.jpg" alt="그린북" width="300px" height="400px">
       </div>
-      <div class="movie_title">그린북</div>
-      <div class="movie_year_nation">2018 미국</div>
-      <p class="movie_plot">
-        줄거리설명입니다줄거리설명입니다줄거리설명입줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다니다줄줄거리설명입니다줄거리설명입니다줄거리설명입줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다줄거리설명입니다.
-      </p>
+
+        <div class="movie_title"> ${movie_info.title}</div>
+        <div class="movie_year_nation">${movie_info.date} ${movie_info.nation}</div>
+        <p class="movie_plot">${movie_info.plot}</p>
+
 
     </div>
+
 
 
 
     </div>
   </section>
+
+
+
 
 </body>
 

@@ -1,0 +1,145 @@
+/* COMMON */
+body {
+  background-color: #141414;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.inner {
+  width: 1350px;
+  margin: 0 auto;
+  position: relative;
+}
+.btn {
+  width: 130px;
+  padding: 5px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: #777;
+  color: #fff;
+}
+.btn.btn--reverse {
+  background-color: #777;
+  color: #fff;  
+}
+.btn.btn--reverse:hover {
+  background-color: transparent;
+  color: #777;
+}
+
+
+/* HEADER */
+header {
+  width: 100%;
+  background-color: #141414;
+  /* position: fixed; */
+  top: 0;
+  z-index: 9;  
+}
+header > .cut_photo {
+  height: 500px;
+  background-image: url("/resources/images/cutphoto/cutphoto_01.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: .4;
+}
+header .logo {
+  height: 75px;
+  position: absolute;
+  top: 25px;
+  bottom: 0;
+  margin-left: 20px;
+}
+header .menu {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  margin-right: 20px;
+  display: flex;  
+}
+header .menu .search {
+  height: 34px;  
+  margin-right: 50px;
+  position: relative;
+}
+header .menu .search input {
+  width: 200px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  font-size: 12px;
+  transition: width .4s;
+}
+header .menu .search .material-icons {
+  height: 24px;
+  position: absolute;  
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: .4s;
+}
+header .menu .search.focused .material-icons {
+  opacity: 0;
+}
+
+/* description */
+.dec_menu {
+  color: #fff;
+
+}
+.dec_menu .inner {
+  top: -150px;
+  height: 400px;
+  /* background-color: royalblue; */
+  display: flex;
+}
+.dec_menu .poster {
+  position: relative;
+}
+
+.dec_menu .movie_title {
+  position: absolute;  
+  margin: 5px 0 0 350px;
+  
+  font-size: 48px;
+}
+
+.dec_menu .movie_year_nation{ 
+  position: absolute;  
+  margin: 85px 0 0 350px;
+  font-size: 18px;
+} 
+.dec_menu .movie_plot {
+  position: absolute;  
+  width: 800px;
+  margin: 150px 0 0 350px;
+  font-size: 14px;
+}
+
+

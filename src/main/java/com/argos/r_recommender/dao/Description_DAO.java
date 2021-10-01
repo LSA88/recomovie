@@ -1,14 +1,13 @@
 package com.argos.r_recommender.dao;
 
-import java.util.List;
-
+import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
-import com.mongodb.client.MongoCollection;
+import java.util.List;
 
-@Repository("recommend_DAO")
-public class Recommend_DAO extends BaseDAO {
+@Repository("description_DAO")
+public class Description_DAO extends BaseDAO {
 
 	@Override
 	protected MongoCollection<Document> getCollection(String databaseName, String col_name) throws Exception {
