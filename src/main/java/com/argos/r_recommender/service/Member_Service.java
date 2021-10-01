@@ -33,20 +33,20 @@ public class Member_Service {
 		if (is_user <= 0)
 		{
 
-				try {
+			try {
 
-					String name = (String) member_info.get("name");
-					String email = (String) member_info.get("email");
-					String passwd = (String) member_info.get("passwd");
+				String name = (String) member_info.get("name");
+				String email = (String) member_info.get("email");
+				String passwd = (String) member_info.get("passwd");
 
-					member_DAO.insert_one("recommend", "userInfo",
-							new Document().append("name", name).append("email", email).append("passwd",passwd)
+				member_DAO.insert_one("recommend", "userInfo",
+						new Document().append("name", name).append("email", email).append("passwd",passwd)
 
-					);
+				);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			response_doc.append("state", 205);
 		} else { //중복유저  처리

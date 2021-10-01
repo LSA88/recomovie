@@ -56,17 +56,17 @@ public class Recommend_Service {
 		Document response_doc = new org.bson.Document();
 
 
-			try {
-				List<Document> movie_list = recommend_DAO.findAll("recommend", "movie",
-						new Document(), new Document(), 0);
+		try {
+			List<Document> movie_list = recommend_DAO.findAll("recommend", "reco_movie_description",
+					new Document(), new Document(), 0);
 
-				response_doc.append("result", movie_list);
-				System.out.println(response_doc.toJson());
-				response_doc.append("state", 200);
-			} catch (Exception e) {
-				e.printStackTrace();
-				response_doc.append("state", 404);
-			}
+			response_doc.append("result", movie_list);
+			System.out.println(response_doc.toJson());
+			response_doc.append("state", 200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response_doc.append("state", 404);
+		}
 
 
 

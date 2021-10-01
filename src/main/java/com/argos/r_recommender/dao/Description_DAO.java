@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("member_DAO")
-public class Member_DAO extends BaseDAO {
+@Repository("description_DAO")
+public class Description_DAO extends BaseDAO {
 
 	@Override
 	protected MongoCollection<Document> getCollection(String databaseName, String col_name) throws Exception {
