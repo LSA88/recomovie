@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.argos.r_recommender.dao.Description_DAO;
 import com.argos.r_recommender.service.Description_Service;
+import com.argos.r_recommender.service.Login_Service;
 import com.argos.r_recommender.service.Recommend_Service;
 import org.bson.Document;
 import org.slf4j.LoggerFactory;
@@ -21,9 +22,13 @@ public class ViewController {
 	org.slf4j.Logger logger = LoggerFactory.getLogger(ViewController.class);
 
 	@Autowired
-	Description_Service description_service;
+	private Description_Service description_service;
 	@Autowired
 	private Recommend_Service recommend_service;
+	@Autowired
+	private Login_Service login_service;
+
+
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index(HttpServletResponse response, HttpServletRequest request)
@@ -42,9 +47,10 @@ public class ViewController {
 	public String login(HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
 		System.out.println("/member/login_resist_form");
-		return "/member/login_resist_form";
 
+		return "/member/login_resist_form";
 	}
+
 
 	@RequestMapping(value = "/description", method = RequestMethod.GET)
 	public ModelAndView description(HttpServletResponse response, HttpServletRequest request, @RequestParam String movieid)
@@ -59,6 +65,42 @@ public class ViewController {
 		System.out.println("/movie/description");
 		return mv;
 
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView login(HttpServletResponse response, HttpServletRequest request, @RequestParam String name, @RequestParam String passwd)
+			throws Exception {
+		System.out.println("name : "+name);
+		Document user_info = login_service.select_member(name,passwd);
+//		Document user_info = login_service.select_member(name+);
+//
+//		if(user_info==null){
+//
+//
+//		}
+
+		ModelAndView mv = new ModelAndView();
+		if (user_info == null) {
+			mv.setViewName("/member/login_resist_form");
+			mv.addObject("user_info",new Document("state","false"));
+		} else {
+			mv.setViewName("/index");
+			mv.addObject("movie_list",recommend_service.select_movie_list());
+			mv.addObject("user_info",user_info);
+		}
+
+
+
+		return mv;
+
+	}
+
+	@RequestMapping(value = "/recommendmovie", method = RequestMethod.GET)
+	public String recommendmovie(HttpServletResponse response, HttpServletRequest request)
+			throws Exception {
+		System.out.println("/recommend_index");
+
+		return "/recommend_index";
 	}
 
 

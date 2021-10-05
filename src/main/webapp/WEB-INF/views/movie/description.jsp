@@ -23,7 +23,7 @@
   <title>Reco Movie</title>
 
   <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,7 +61,7 @@
     <style>
 
     header > .cut_photo {
-        height: 500px;
+        height: 600px;
         background-image: url(/resources/images/cutphoto/cutphoto_${movie_info.movieid}.jpg);
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -90,7 +90,10 @@
         </div>
 
         <div>
-          <a href="/login_registe_form.html" class="btn">로그인</a>
+          <c:choose>
+           <c:when test="${empty user_info.name}" > <a href="/login" class="btn"> 로그인 </a></c:when>
+           <c:otherwise>  <a href="#" class="btn">${user_info.name}  님</a> </c:otherwise>
+          </c:choose>
         </div>
 
       </div>
@@ -117,6 +120,25 @@
     </div>
   </section>
 
+<!-- Footer-->
+<footer>
+  <div class="inner">
+    <div class="info">
+      <span>Email : lovervz@naver.com </span>
+      <span>RECO MOVIE SITE</span>
+      <span>TEL : 010-5699-7662 </span>
+      <span>책임자 : 이상아, 김명지, 임진우</span>
+    </div>
+
+    <p class="copyright">
+      &copy; <span class="this-year"> </span> RECO MOVIE HOMEPAGE. WELCOME!
+    </p>
+    <img src="${pageContext.request.contextPath}/resources/images/reco_nb_logo.png " alt="" class="logo" width="150px" height="30px"/>
+
+  </div>
+
+
+</footer>
 
 
 

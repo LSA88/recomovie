@@ -74,6 +74,30 @@ public class Recommend_Service {
 
 	}
 
+	public Document select_member_list() {
+
+		Document response_doc = new org.bson.Document();
+
+
+		try {
+			List<Document> member_list = recommend_DAO.findAll("recommend", "userinfo",
+					new Document(), new Document(), 0);
+
+			response_doc.append("result", member_list);
+			System.out.println(response_doc.toJson());
+			response_doc.append("state", 200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response_doc.append("state", 404);
+		}
+
+
+
+		return response_doc;
+
+	}
+
+
 	public Map insert_movie_rating(Map<String, Object> request_map) {
 		Document response_doc = new org.bson.Document();
 

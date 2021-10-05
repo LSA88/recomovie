@@ -48,10 +48,11 @@ public class Member_Service {
 				e.printStackTrace();
 			}
 
-			response_doc.append("state", 205);
-		} else { //중복유저  처리
 
-			response_doc.append("state", 201);
+//			response_doc.append("state", 205);
+		} else { //중복유저  처리
+//			response_doc.append("state", 201);
+
 		}
 
 		return response_doc;

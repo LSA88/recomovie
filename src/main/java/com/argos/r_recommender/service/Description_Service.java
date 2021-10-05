@@ -24,7 +24,7 @@ public class Description_Service {
 
 
 		try {
-			 response_doc = description_DAO.find_one("recommend", "reco_movie_description",
+			response_doc = description_DAO.find_one("recommend", "reco_movie_description",
 					new Document("movieid",movieid));
 
 			System.out.println(response_doc.toJson());
@@ -39,7 +39,6 @@ public class Description_Service {
 		return response_doc;
 
 	}
-
 
 
 
