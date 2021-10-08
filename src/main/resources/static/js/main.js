@@ -21,7 +21,7 @@ navigation: {
 
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box2 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -41,7 +41,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box3 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -61,7 +61,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box4 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -81,7 +81,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box5 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -101,7 +101,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box6 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -121,7 +121,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box7 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -141,7 +141,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box8 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -161,7 +161,7 @@ navigation: {
 });
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box9 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기
@@ -182,7 +182,7 @@ navigation: {
 
 
 
-new Swiper('.img_box .swiper-container', {
+new Swiper('.img_box10 .swiper-container', {
   slidesPerView: 5, // 한번에 보여줄 슬라이드 개수
   spaceBetween: 10,
   centeredSlides: true, // 1번 슬라이드가 가운데 보이기

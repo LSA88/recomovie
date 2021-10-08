@@ -12,7 +12,7 @@
                              이름 : null,
                              영화이름 : temp_list.result[i].title,
                              평점 : null,
-                             이미지 : "movie_"+temp_list.result[i].movieId+".jpg"
+                             이미지 : "movie_"+temp_list.result[i].movieid+".jpg"
                           }
             movie_list.push(movie_obj);
 
@@ -141,7 +141,9 @@
       //requst_data.movie_list 에 따로 담아서 전송을함
       //파트별로 전부 쪼개서 반복문을 돌리게 해놓았지만  하나로도 만들수가 있다. 응용 필요
       $(".rating_select").each(function(index, item) {
-
+         if(index >= 100){
+          return false
+          }
          movie_list[index]["평점"] = $(item).val()
          if (movie_list[index]["평점"] == "null") {
             movie_list[index]["평점"] = null
@@ -152,6 +154,7 @@
 
       var rating_count = 0;
       $.each(movie_list, function(index, item) {
+
 
          if (movie_list[index]["평점"] != null) {
 

@@ -4,6 +4,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -44,16 +45,25 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script defer src="${pageContext.request.contextPath}/resources/js/youtube.js"></script>
   <script defer src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <style>
+    body {
+    background-color: #141414;
+    }
+  </style>
 
 </head>
-
 <body>
-
-
 
   <!-- Header-->
   <header>
@@ -62,33 +72,72 @@
         <img src="${pageContext.request.contextPath}/resources/images/reco_logo.png" alt="Reco movie" width="250px"
           height="50px" />
       </a>
+      <div class="dropdown">
+        <button class="dropbtn">장르</button>
+        <div class="dropdown-content">
+          <a href="#">드라마</a>
+          <a href="#">액션</a>
+          <a href="#">로맨스</a>
+          <a href="#">SF</a>
+          <a href="#">뮤지컬</a>
+          <a href="#">애니메이션</a>
+          <a href="#">스릴러</a>
+          <a href="#">공포</a>
+          <a href="#">판타지</a>
+          <a href="#">코미디</a>
+        </div>
+      </div>
 
       <div class="menu">
-        <div class="dropdown">
-          <button class="dropbtn">장르</button>
-          <div class="dropdown-content">
-            <a href="#">드라마</a>
-            <a href="#">액션</a>
-            <a href="#">로맨스</a>
-            <a href="#">SF</a>
-            <a href="#">뮤지컬</a>
-            <a href="#">애니메이션</a>
-            <a href="#">스릴러</a>
-            <a href="#">공포</a>
-            <a href="#">판타지</a>
-            <a href="#">코미디</a>
-          </div>
+        <div>
+          <c:choose>
+           <c:when test="${empty user_info.name}" >
+            <input type="hidden" id="recommendbtn" value="${user_info.name}"/>
+           </c:when>
+           <c:otherwise> <button class="btn_re btn-defult" onclick="insert_movie_rating()">평점 등록</button>
+           <button class="btn_re btn-defult" id= "recommendbtn" onclick="recommend_item()"> 추천 받기 </button> </c:otherwise>
+          </c:choose>
         </div>
 
+
+        <!-- 동적 추천 영화 그리드 생성을 위한 템플릿 스크립트 -->
+        <script type="text/html" class="recommend_movie_templet">
+        <div class="col-xs-3" style="margin-top: 50px;">
+        <div class="card">
+           <div class="card-img-div">
+          <img class="card-img-top" src="/resources/images/movie/%%IMG_NAME%%" width="250px" height="400px">
+        </div>
+          <div class="card-body">
+          <div class="card-title-div">
+            <h4 class="card-title" style="font-size: 24px; font-weight: 500; " >%%MOVIE_NAME%%</h4>
+          </div>
+          </div>
+        </div>
+        </div>
+        </script>
+
+        <script
+        	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script
+        	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+        <script
+        	src="${pageContext.request.contextPath}/resources/js/recommend_movie.js"
+        	charset="UTF-8"></script>
+
+
         <div class="search">
-          <input type="text" placeholder="영화제목을 검색해 보세요." />
+          <input type="text"  placeholder="영화제목을 검색해 보세요." />
           <div class="material-icons">search</div>
         </div>
 
         <div>
           <c:choose>
-           <c:when test="${empty user_info.name}" > <a href="/login" class="btn"> 로그인 </a></c:when>
-           <c:otherwise>  <a href="#" class="btn">${user_info.name}  님</a> </c:otherwise>
+           <c:when test="${empty user_info.name}" > <a href="/login" class="btn_lo"> LOGIN </a></c:when>
+           <c:otherwise>  <a href="#" class="btn_lo ">${user_info.name}  님</a>
+            <input type="hidden" id="userId" value="${user_info.name}"/>
+            </c:otherwise>
           </c:choose>
         </div>
 
@@ -113,9 +162,6 @@
       <div class="main_title">
         <p> # 드라마</p>
       </div>
-
-
-
 
       <ul class="img_box">
         <div class="swiper-container">
@@ -157,12 +203,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -181,10 +221,7 @@
         <p> # 액션</p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box2">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -224,12 +261,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -249,10 +280,7 @@
         <p> # 로맨스</p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box3">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -292,12 +320,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -317,10 +339,7 @@
         <p> # SF </p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box4">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -360,12 +379,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -385,10 +398,7 @@
         <p> # 뮤지컬</p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box5">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -423,16 +433,9 @@
               </c:if>
             </c:forEach>
 
-
           </div>
         </div>
       </ul>
-
-
-
-
-
-
 
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
@@ -453,10 +456,7 @@
         <p> # 애니메이션 </p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box6">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -496,12 +496,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -521,10 +515,7 @@
         <p> # 스릴러</p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box7">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -564,12 +555,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -580,7 +565,6 @@
     </div>
   </section>
 
-
   <!-- MAIN WINDOW8 -->
   <section class="mainwindow8">
     <div class="inner">
@@ -589,10 +573,7 @@
         <p># 공포</p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box8">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -632,12 +613,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -657,10 +632,7 @@
         <p># 판타지 </p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box9">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -700,12 +672,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -725,10 +691,7 @@
         <p># 코미디 </p>
       </div>
 
-
-
-
-      <ul class="img_box">
+      <ul class="img_box10">
         <div class="swiper-container">
           <div class="swiper-wrapper">
 
@@ -768,12 +731,6 @@
         </div>
       </ul>
 
-
-
-
-
-
-
       <div class="swiper-pagination"></div>
       <div class="swiper-prev">
         <div class="material-icons">arrow_back_ios</div>
@@ -783,10 +740,6 @@
       </div>
     </div>
   </section>
-
-
-
-
 
 
 <!-- Footer-->
@@ -808,24 +761,15 @@
 
 
 </footer>
-
-
-<div id="to-top">
-  <div class="material-icons">arrow_upward</div>
-</div>
-
-
-
-
+<%@ include file="/WEB-INF/views/movie/modal/recommend_movie_modal.jsp"%>
 </body>
+
 <script>
   function description(movieid) {
-
 
     location.href = "/description?movieid=" + movieid;
 
   }
 </script>
-
 
 </html>

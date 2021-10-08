@@ -114,7 +114,7 @@ header .menu .search.focused .material-icons {
 
 }
 .dec_menu .inner {
-  top: -150px;
+  top: -250px;
   height: 400px;
   /* background-color: royalblue; */
   display: flex;
@@ -137,7 +137,7 @@ header .menu .search.focused .material-icons {
 } 
 .dec_menu .movie_plot {
   position: absolute;  
-  width: 800px;
+  width: 1000px;
   margin: 150px 0 0 350px;
   font-size: 14px;
 }

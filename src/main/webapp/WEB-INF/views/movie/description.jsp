@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+
       <%
           request.setCharacterEncoding("UTF-8");
           String movie_info = request.getParameter("movie_info");
@@ -92,7 +93,7 @@
         <div>
           <c:choose>
            <c:when test="${empty user_info.name}" > <a href="/login" class="btn"> 로그인 </a></c:when>
-           <c:otherwise>  <a href="#" class="btn">${user_info.name}  님</a> </c:otherwise>
+           <c:otherwise>  <a href="#" class="btn"> ${user_info.name}  님</a> </c:otherwise>
           </c:choose>
         </div>
 
