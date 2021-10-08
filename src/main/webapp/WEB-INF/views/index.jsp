@@ -75,16 +75,16 @@
       <div class="dropdown">
         <button class="dropbtn">장르</button>
         <div class="dropdown-content">
-          <a href="#">드라마</a>
-          <a href="#">액션</a>
-          <a href="#">로맨스</a>
-          <a href="#">SF</a>
-          <a href="#">뮤지컬</a>
-          <a href="#">애니메이션</a>
-          <a href="#">스릴러</a>
-          <a href="#">공포</a>
-          <a href="#">판타지</a>
-          <a href="#">코미디</a>
+          <a href="#drama_title">드라마</a>
+          <a href="#action_title">액션</a>
+          <a href="#romance_title">로맨스</a>
+          <a href="#sf_title">SF</a>
+          <a href="#musical_title">뮤지컬</a>
+          <a href="#animation_title">애니메이션</a>
+          <a href="#thriller_title">스릴러</a>
+          <a href="#horror_title">공포</a>
+          <a href="#fantasy_title">판타지</a>
+          <a href="#comedy_title">코미디</a>
         </div>
       </div>
 
@@ -159,8 +159,8 @@
   <section class="mainwindow">
     <div class="inner">
 
-      <div class="main_title">
-        <p> # 드라마</p>
+      <div class="main_title" id="drama_title">
+        <a name="drama"> <p> # 드라마</p></a>
       </div>
 
       <ul class="img_box">
@@ -217,7 +217,7 @@
   <section class="mainwindow2">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="action_title">
         <p> # 액션</p>
       </div>
 
@@ -276,7 +276,7 @@
   <section class="mainwindow3">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="romance_title">
         <p> # 로맨스</p>
       </div>
 
@@ -335,7 +335,7 @@
   <section class="mainwindow4">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="sf_title">
         <p> # SF </p>
       </div>
 
@@ -394,7 +394,7 @@
   <section class="mainwindow5">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="musical_title">
         <p> # 뮤지컬</p>
       </div>
 
@@ -452,7 +452,7 @@
   <section class="mainwindow6">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="animation_title">
         <p> # 애니메이션 </p>
       </div>
 
@@ -511,7 +511,7 @@
   <section class="mainwindow7">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="thriller_title">
         <p> # 스릴러</p>
       </div>
 
@@ -569,7 +569,7 @@
   <section class="mainwindow8">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="horror_title">
         <p># 공포</p>
       </div>
 
@@ -628,7 +628,7 @@
   <section class="mainwindow9">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="fantasy_title">
         <p># 판타지 </p>
       </div>
 
@@ -687,7 +687,7 @@
   <section class="mainwindow10">
     <div class="inner">
 
-      <div class="main_title">
+      <div class="main_title" id="comedy_title">
         <p># 코미디 </p>
       </div>
 
